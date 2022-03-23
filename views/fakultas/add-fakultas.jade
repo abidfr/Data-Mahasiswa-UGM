@@ -1,0 +1,57 @@
+extends ../layout/base
+block content
+    section.content-header
+        h1
+            | Tambah Fakultas
+            small universitas gadjah mada
+        ol.breadcrumb
+            li
+                a(href='#')
+                    i.fa.fa-dashboard
+                    | Fakultas
+                li.active Tambah Fakultas
+    section.content
+        .box
+            .box-header.with-border
+                h3.box-title
+                    | Fakultas
+                .box-tools.pull-right
+                    button(type='button', data-widget='collapse', data-toggle='tooltip',title='collapse').btn.btn-box-tool
+                        i.fa.fa-minus
+
+            .box-body
+                form(role='form',method='post' action='/fakultas/add')
+                    .row
+
+                        .col-xs-6
+                            .box-body
+                                - if (messages.msg_error)
+                                    .alert.alert-danger.alert-dismissable
+                                        button.close(type='button', data-dismiss='alert', aria-hidden='true')
+                                            | ×
+                                        h4
+                                            i.icon.fa.fa-ban
+                                            | Alert!
+                                        | !{messages.msg_error}
+                                .form-group
+                                    label
+                                        | Nama Fakultas
+                                    input(type='text',value='#{name}',name='nama_fakultas',placeholder='Masukkan Nama Fakultas', autofocus).form-control
+                                .form-group
+                                    label
+                                        | Letak Fakultas
+                                    input(type='text',name='letak_fakultas',placeholder='Masukkan Letak Fakultas').form-control
+                                .form-group
+                                    label
+                                        | No Fakultas
+                                    input(type='text',name='no_fakultas',placeholder='Masukkan No Fakultas').form-control
+                                .form-group
+                                    label
+                                        | Email Fakultas
+                                    input(type='text',name='email_fakultas',placeholder='Masukkan Email Fakultas').form-control
+                            .box-footer
+                                button(type='submit').btn.btn-primary
+                                    | Simpan
+
+                                a(href='/fakultas').btn.btn-primary.pull-right
+                                    | Silahkan Kembali

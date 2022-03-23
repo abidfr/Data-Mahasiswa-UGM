@@ -1,0 +1,70 @@
+extends ../layout/base 
+block content 
+	section.content-header 
+		h1 
+			| Edit nim
+			small Universitas Gadjah Mada
+		ol.breadcrumb 
+			li 
+				a(href='#') 
+					i.fa.fa-dashboard
+					| nim 
+			li.active Edit
+	section.content
+		.box
+			.box-header.with-border
+				h3.box-title
+					| nim
+				.box-tools.pull-right
+					button(type='button', data-widget='collapse', data-toggle='tooltip',title='collapse').btn.btn-box-tool
+						i.fa.fa-minusfaku
+					
+			.box-body
+				form(role='form',method='post' action='/nim/edit/#{(id==undefined) ? data.id : id}' enctype='multipart/form-data')
+					.row
+						
+						.col-xs-6
+							.box-body
+								- if (messages.msg_error) 
+									.alert.alert-danger.alert-dismissable 
+										button.close(type='button', data-dismiss='alert', aria-hidden='true') 
+											| ×
+										h4
+											i.icon.fa.fa-ban
+											| Alert! 
+										| !{messages.msg_error}
+								- if (messages.msg_info) 
+									.alert.alert-success.alert-dismissable 
+										button.close(type='button', data-dismiss='alert', aria-hidden='true') 
+											| ×
+										h4
+											i.icon.fa.fa-ban
+											| Success! 
+										| !{messages.msg_info}
+								.form-group
+									label
+										| Nama Mahasiswa
+									input(type='text',value="#{data.nama_mahasiswa}",name='nama_mahasiswa',placeholder='Edit Nama Mahasiswa', autofocus).form-control
+								.form-group
+									label
+										| Jenis Kelamin
+									input(type='text',value="#{ (jenis_kelamin == undefined) ? data.jenis_kelamin : jenis_kelamin}",name='jenis_kelamin',placeholder='Edit Jenis Kelamin').form-control
+								.form-group
+									label
+										| Jenjang Mahasiswa
+									input(type='text',value="#{ (jenjang_mahasiswa == undefined) ? data.jenjang_mahasiswa : jenjang_mahasiswa }",name='jenjang_mahasiswa',placeholder='Edit Jenjang Mahasiswa').form-control
+								.form-group
+									label
+										| Program Studi
+									input(type='text',value="#{ (program_studi == undefined) ? data.program_studi : program_studi }",name='program_studi',placeholder='Edit Program Studi').form-control
+								form-group
+									label
+										| Gambar
+									input(type='file',name='gambar').form-control
+							.box-footer
+								input(type="hidden",name="_method", value="PUT")
+								button(type='submit').btn.btn-primary
+									i.fa.fa-pencil 
+									|  Edit
+								a(href='/nim').btn.btn-primary.pull-right
+									| Back
